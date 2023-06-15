@@ -1,0 +1,13 @@
+﻿  MainSystem.cpp
+  ManagmentSystem.cpp
+D:\LibraryManagementSystem\ManagmentSystem\ManagmentSystem.cpp(51,15): error C2039: 'get_id': is not a member of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=Book
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\vector(668,36): message : see declaration of 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=Book
+          ]
+  Generating Code...
