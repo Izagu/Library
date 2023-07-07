@@ -1,2 +1,0 @@
-D:\LibraryManagementSystem\ManagmentSystem\x64\Debug\ManagmentSystem.exe
-E:\LibraryManagementSystem\ManagmentSystem\x64\Debug\ManagmentSystem.exe

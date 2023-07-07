@@ -11,7 +11,6 @@ int serialNum = 1002;
 int booksTotal = 2;
 Library library;
 void populate();
-void createBook();
 
 int main()
 {
@@ -19,45 +18,54 @@ int main()
     populate();
     std::cout << "----Library Inventory Management System----" << std::endl;
     int userIn = 0;
-    while (userIn != 7) {
+    while (userIn != 5) {
         //prompt
-        std::cout << "\nPlease enter the line number associated to the following options: " << std::endl;
+        std::cout << "\n----Main Menu----" << std::endl;
+        std::cout << "How can I help you? (select the corresponding number):" << std::endl;
         std::cout << "1. Add Book " << std::endl;
         std::cout << "2. Remove Book " << std::endl;
         std::cout << "3. Update Book " << std::endl;
-        std::cout << "4. Search Author" << std::endl;
-        std::cout << "5. Search Title" << std::endl;
-        std::cout << "6. Return Inventory List" << std::endl;
-        std::cout << "7. Exit" << std::endl;
+        std::cout << "4. Return Inventory List" << std::endl;
+        std::cout << "5. Exit" << std::endl;
 
         std::cin >> userIn;
 
         //case
         switch (userIn) {
+            //create book
         case 1:
-            createBook();
+            //createBook()
+            library.add_book(serialNum);
             booksTotal++;
             serialNum++;
+            std::cout << "*Book Added*" << std::endl;
             break;
+            //remove book
         case 2:
-            std::cout << "remove book was selected" << std::endl;
+            std::cout << "\n----Remove Book----\n" << std::endl;
+            std::cout << "\nHere are all the books avaliable for removal:\n" << std::endl;
+            library.get_inventory();
+            library.remove_book();
+            std::cout << "*Book Removed*" << std::endl;
+            booksTotal--;
             break;
+            //update book
         case 3:
-            std::cout << "update book was selected" << std::endl;
+            std::cout << "\n----Update Book----\n" << std::endl;
+            library.get_inventory();
+            std::cout << "\nI listed all the books avaliable for UPDATE above." << std::endl;
+            library.update_book();
+            std::cout << "*Book Updated*" << std::endl;
             break;
+            //search title
         case 4:
-            std::cout << "search author was selected" << std::endl;
-            break;
-        case 5:
-            std::cout << "search title was selected" << std::endl;
-            break;
-        case 6:
-            std::cout << "Inventory" << std::endl;
+            std::cout << "\n----Book Inventory----\n" << std::endl;
             library.get_inventory();
             break;
-        case 7:
+        case 5:
+            std::cout << "\n----Closing Program----\n" << std::endl;
             std::cout << "Total Books: " << booksTotal << std::endl;
-            std::cout << "Closing program..." << std::endl;
+            std::cout << "Goodbye..." << std::endl;
             break;
         default:
             std::cout << "Not a valid selection. " << std::endl;
@@ -68,76 +76,9 @@ int main()
     return(0);
 
 }
-
-//prompt user for new book info and creates book
-void createBook() {
-    std::string I;
-    std::string T;
-    std::string A;
-    int P;
-    int genre = 0;
-    int reader = 0;
-    std::cout << "---- Adding a new book. ----" << std::endl;
-    std::cout << "Please provide the title:";
-    std::cin.ignore();
-    getline(std::cin, T);
-    std::cout << "Please provide the author:";
-    getline(std::cin, A);
-    std::cout << "Please provide the number of pages:";
-    std::cin >> P;
-
-    while ((genre <= 0) && (genre < 2)) {
-        //prompt
-        std::cout << "Is this book a fiction or nonfiction? Select the corresponding number from the list below." << std::endl;
-        std::cout << "1. Fiction" << std::endl;
-        std::cout << "2. Nonfiction" << std::endl;
-        std::cin >> genre;
-
-        switch (genre) {
-        case 1:
-            I.append("F");
-            break;
-        case 2:
-            I.append("N");
-            break;
-        default:
-            std::cout << "Not a valid entry. Try Again." << std::endl;
-            break;
-        }
-    }
-    while ((reader <= 0) && (reader < 4)) {
-        std::cout << "Is this book suitable for children, young adults, adult, or all? Select the corrresponding number from the list below." << std::endl;
-        std::cout << "1. Children" << std::endl;
-        std::cout << "2. Young Adults" << std::endl;
-        std::cout << "3. Adults" << std::endl;
-        std::cout << "4. All" << std::endl;
-        std::cin >> reader;
-        switch (reader) {
-        case 1:
-            I.append("CH");
-            break;
-        case 2:
-            I.append("YA");
-            break;
-        case 3:
-            I.append("AD");
-            break;
-        case 4:
-            I.append("AL");
-            break;
-        default:
-            std::cout << "Not a valid entry. Try Again." << std::endl;
-            break;
-        }
-    }
-    std::string itos = std::to_string(serialNum);
-    I.append(itos);
-    library.add_book(I, T, A, P);
-}
-
-//prepopulates the information
+//prepopulates lib with information
 void populate() {
-    library.add_book("FAD1000", "FRANKENSTEIN", "MARY SHELLY", 247);
-    library.add_book("FAD1001", "THE SCARLET LETTER", "NATHANIEL HAWTHORNE", 279);
+    library.prePop("FAD1000", "FRANKENSTEIN", "MARY SHELLY", 247);
+    library.prePop("FAD1001", "THE SCARLET LETTER", "NATHANIEL HAWTHORNE", 279);
 }
 

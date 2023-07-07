@@ -36,10 +36,11 @@ private:
     std::vector<Book> bookList;
 
 public:
-    void add_book(std::string , std::string, std::string, int);
+    void prePop(std::string , std::string, std::string, int);
+    void add_book(int);
     void get_inventory();
-    void remove_book(std::string);
-    
+    void remove_book();
+    void update_book();
 };
 
 
